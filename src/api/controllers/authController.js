@@ -1,54 +1,33 @@
-const jwt          = require('jsonwebtoken');
-const dotenv       = require("dotenv");
-const compararMD5  = require('../../utils/md5Crypto.js');      
-const dbConnection = require('../../database/mysqlConfig.js');
-
+const jwt = require('jsonwebtoken');
+const dotenv = require("dotenv");
 dotenv.config();
 const SECRET = process.env.SECRET;
 
-//Realizando Login
+let usuarios = [
+  { ID: 1, NOME: "user1", SENHA: "senha1" },
+  { ID: 2, NOME: "user2", SENHA: "senha2" }
+];
+
 const login = function(req, res){
-    try{
-        let user = req.body.user; 
-        const sql = "SELECT ID, NOME, SENHA FROM usuarios WHERE NOME = '" + user + "'";
-        
-        dbConnection.connect(function async(err) {
-            if (err) throw err;
-            dbConnection.query(sql, function async(err, result, fields) {
-                if(!result){
-                    return res.status(401).json({
-                        statusCode: 401,
-                        message: "Usuário não encontrado!",
-                        data:{
-                            user: req.body.user
-                        }
-                    });
-                }
+    try {
+        let { user, password } = req.body;
+        const usuario = usuarios.find(u => u.NOME === user);
 
-                //Validacao Senha
-                const validacaoSenha = compararMD5(req.body.password, result.senha);
-                if(!validacaoSenha){
-                    return res.status(401).json({
-                        statusCode: 401,
-                        message: "Não autorizado!"
-                    });
-                }
-
-                //Criacao Token JWT
-                const token = jwt.sign({name: result.nome}, SECRET);
-
-                res.status(200).json({
-                    statusCode: 200,
-                    message: "Login realizado com sucesso!",
-                    data: {
-                        token
-                    }
-                });
-
+        if (!usuario || usuario.SENHA !== password) {
+            return res.status(401).json({
+                statusCode: 401,
+                message: "Usuário não encontrado ou senha inválida!"
             });
+        }
+
+        const token = jwt.sign({ name: usuario.NOME }, SECRET, { expiresIn: '1h' });
+
+        res.status(200).json({
+            statusCode: 200,
+            message: "Login realizado com sucesso!",
+            token
         });
-    }
-    catch(error){
+    } catch (error) {
         console.log(error);
         res.status(500).json({
             statusCode: 500,
@@ -56,6 +35,5 @@ const login = function(req, res){
         });
     }
 }
-
 
 module.exports.login = login;
