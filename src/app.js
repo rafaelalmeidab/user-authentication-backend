@@ -45,13 +45,13 @@
 //   });
 // });
 
-import express from "express";
+const express = require("express");
 const app = express();
 
-import cors from "cors";
+const cors = require("cors");
 app.use(cors());
 
-import * as dotenv from "dotenv";
+const dotenv = require("dotenv");
 dotenv.config()
 
 app.use(express.json());
@@ -59,12 +59,11 @@ app.use(express.json());
 // import db from "./database/mongoConfig.js"
 // db.connect();
 
-import routes from "./api/routes/routes.js"
-
-app.use("/router", routes)
+const routes = require("./api/routes/routes.js");
+app.use("", routes);
 
 app.post("/api/users", (req, res) => {
     console.log(req.body);
 })
 
-export default app;
+module.exports = app;

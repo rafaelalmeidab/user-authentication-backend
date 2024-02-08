@@ -1,9 +1,9 @@
-import jwt from 'jsonwebtoken';
-import * as dotenv from 'dotenv';
-const { compararMD5 } = require('../../utils/md5Crypto.js');
+const jwt          = require('jsonwebtoken');
+const dotenv       = require("dotenv");
+const compararMD5  = require('../../utils/md5Crypto.js');      
+const dbConnection = require('../../database/mysqlConfig.js');
 
 dotenv.config();
-
 const SECRET = process.env.SECRET;
 
 //Realizando Login
@@ -12,9 +12,9 @@ const login = function(req, res){
         let user = req.body.user; 
         const sql = "SELECT ID, NOME, SENHA FROM usuarios WHERE NOME = '" + user + "'";
         
-        con.connect(function(err) {
+        dbConnection.connect(function async(err) {
             if (err) throw err;
-            con.query(sql, function (err, result, fields) {
+            dbConnection.query(sql, function async(err, result, fields) {
                 if(!result){
                     return res.status(401).json({
                         statusCode: 401,
@@ -47,7 +47,6 @@ const login = function(req, res){
 
             });
         });
-
     }
     catch(error){
         console.log(error);
@@ -59,6 +58,4 @@ const login = function(req, res){
 }
 
 
-export default{
-    login
-}
+module.exports.login = login;
