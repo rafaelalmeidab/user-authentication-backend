@@ -1,56 +1,42 @@
-const jwt          = require('jsonwebtoken');
-const dotenv       = require("dotenv");
-const compararMD5  = require('../../utils/md5Crypto.js');      
-const dbConnection = require('../../database/mysqlConfig.js');
+const jwt      = require('jsonwebtoken');
+const dotenv   = require("dotenv");
+const mysql    = require('mysql');
+const dbConfig = require('../../database/mysqlConfig.js');
 
 dotenv.config();
-const SECRET = process.env.SECRET;
+const SECRET     = process.env.SECRET;
+const connection = mysql.createConnection(dbConfig);
 
 //Realizando Login
-const users = async function(req, res){
-    try{
+async function users(req, res){
+    try {
         const sql = "SELECT ID, NOME, SENHA FROM usuarios";
-        console.log(sql);
-        
-        // dbConnection.connect(function(err) {
-        //     if (err) {
-        //         console.error('Erro ao conectar ao banco de dados:', err);
-        //         return res.status(500).json({
-        //             statusCode: 500,
-        //             message: "Erro interno do servidor",
-        //         });
-        //     }
+
+        connection.query(sql, (error, results, fields) => {
+            if (error) {
+                console.error("Erro ao executar a consulta:", error);
+                return { status : 500, error: "Erro ao executar a consulta." };
+            }
+
+            var ans = JSON.stringify(results);
+            console.log('users', ans);
             
-        //     dbConnection.query(sql, function(err, result, fields) {
-        //         if (err) {
-        //             console.error('Erro ao executar a consulta:', err);
-        //             return res.status(500).json({
-        //                 statusCode: 500,
-        //                 message: "Erro interno do servidor",
-        //             });
-        //         }
-
-        //         if(result.length === 0){
-        //             return res.status(401).json({
-        //                 statusCode: 401,
-        //                 message: "Usuários não encontrado!",
-        //             });
-        //         }
-
-        //         res.status(200).json({
-        //             statusCode: 200,
-        //             data: 'teste'
-        //         });
-        //     });
-        // });
-    }
-    catch(error){
-        console.log(error);
-        res.status(500).json({
-            statusCode: 500,
-            message: error.message
+            return ans;
         });
+        
+        
+        connection.end((err) => {
+            if (err) {
+                console.error('Erro ao fechar conexão com o banco de dados:', err);
+                return { status : 500, error: "Erro ao fechar conexão com o banco de dados." };
+            }
+        
+            console.log('Conexão com o banco de dados MySQL fechada com sucesso');
+        });
+    } catch(error) {
+        console.error("Erro no bloco catch:", error);
+        return { status : 500, error: "Erro interno do servidor." };
     }
 }
 
-module.exports.users = users;
+module.exports = { users };

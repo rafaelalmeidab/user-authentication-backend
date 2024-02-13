@@ -7,7 +7,7 @@ dotenv.config();
 const SECRET = process.env.SECRET;
 
 //Realizando Login
-const login = function(req, res){
+function login(req, res){
     try{
         let user = req.body.user; 
         const sql = "SELECT ID, NOME, SENHA FROM usuarios WHERE NOME = '" + user + "'";
@@ -58,4 +58,4 @@ const login = function(req, res){
 }
 
 
-module.exports.login = login;
+module.exports = { login };

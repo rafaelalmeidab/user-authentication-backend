@@ -1,26 +1,24 @@
 const express = require("express");
 const router = express.Router();
 
-const authController = require('../controllers/authController.js');
-const usersController = require('../controllers/usersController.js');
+const authController = require('../controllers/authController');
+const usersController = require('../controllers/usersController');
 
-console.log("teste");
-console.log(authController);
-console.log(usersController);
-console.log("fim teste");
-
-
+//Routes
 router.post("/login", function(req, res){
-    authController.login  
+    authController.login();  
 });
 
 router.get("/users", function(req, res){
-    usersController.users
+    usersController.users()
+    .then(result => res.status(200).send({res}))
+    .catch(error => console.log("Promises rejected: " + error));
 });
 
+
 router.get("/test", async (req, res) => {
-    return res.json({
-        message: "/test"
+    res.status(202).send({
+        message: "need some help"
     })
 })
 
