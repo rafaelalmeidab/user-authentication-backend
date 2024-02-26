@@ -11,8 +11,6 @@ router.post("/login", function(req, res){
 
 router.get("/users", function(req, res){
     usersController.users()
-    .then(result => res.status(200).send({res}))
-    .catch(error => console.log("Promises rejected: " + error));
 });
 
 

@@ -10,7 +10,7 @@ dotenv.config()
 app.use(express.json());
 
 const routes = require("./api/routes/routes.js");
-app.use("", routes);
+app.use("/api", routes);
 
 
 app.post("/api/users", (req, res) => {

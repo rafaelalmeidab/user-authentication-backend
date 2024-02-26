@@ -8,8 +8,9 @@ const SECRET     = process.env.SECRET;
 const connection = mysql.createConnection(dbConfig);
 
 //Realizando Login
-async function users(req, res){
+function users(req, res){
     try {
+        var ans = '';
         const sql = "SELECT ID, NOME, SENHA FROM usuarios";
 
         connection.query(sql, (error, results, fields) => {
@@ -18,10 +19,8 @@ async function users(req, res){
                 return { status : 500, error: "Erro ao executar a consulta." };
             }
 
-            var ans = JSON.stringify(results);
-            console.log('users', ans);
+            ans = JSON.stringify(results);
             
-            return ans;
         });
         
         
@@ -30,9 +29,12 @@ async function users(req, res){
                 console.error('Erro ao fechar conexão com o banco de dados:', err);
                 return { status : 500, error: "Erro ao fechar conexão com o banco de dados." };
             }
-        
+            
             console.log('Conexão com o banco de dados MySQL fechada com sucesso');
+            console.log('users', ans);
+            return ans;
         });
+        
     } catch(error) {
         console.error("Erro no bloco catch:", error);
         return { status : 500, error: "Erro interno do servidor." };
