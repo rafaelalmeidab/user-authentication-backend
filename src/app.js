@@ -10,11 +10,6 @@ dotenv.config()
 app.use(express.json());
 
 const routes = require("./api/routes/routes.js");
-app.use("/api", routes);
-
-
-app.post("/api/users", (req, res) => {
-    console.log(req.body);
-})
+app.use("", routes);
 
 module.exports = app;

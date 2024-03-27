@@ -1,20 +1,14 @@
-// var mysql = require('mysql2/promise');
-
-// var connection = mysql.createPool({
-//     host: "localhost",
-//     user: "root",
-//     password: "",
-//     database: "barmanagementdb",
-//     port : 3306
-// });
-
-// module.exports = { connection };
-
-module.exports = {
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'barmanagementdb',
-    port: 3306,
-    connectionLimit: 10
-};
+const config = {
+    db: {
+        host: 'localhost',
+        user: 'root',
+        password: '',
+        database: 'barmanagementdb',
+        port: 3306,
+        connectionLimit: 10,
+        connectTimeout: 60000
+    },
+    listPerPage: 10,
+  };
+  
+  module.exports = config;
