@@ -18,13 +18,13 @@ Esta é uma API em Node.js para login e autenticação de usuários.
   - /controllers
     <!-- - UserController.js -->
     <!-- - OtherController.js -->
-  - /middlewares
+  <!-- - /middlewares-->
     <!-- - authMiddleware.js -->
     <!-- - validationMiddleware.js -->
-  - /models
+  <!-- - /models -->
     <!-- - UserModel.js -->
     <!-- - OtherModel.js -->
-  - /routes
+   - /routes
     <!-- - userRoutes.js -->
     <!-- - otherRoutes.js -->
 - /config
