@@ -1,13 +1,13 @@
-# API de Gerenciamento de Bar
+# API Autenticação Usuários
 
-Esta é uma API em Node.js para o gerenciamento de um bar.
+Esta é uma API em Node.js para login e autenticação de usuários.
 
 ## Uso
 
 1. Clone este repositório:
 
    ```bash
-   git clone https://github.com/rafaelalmeidab/bar-management-system
+   git clone https://github.com/rafaelalmeidab/user-authentication
 
 
 ## Estrutura de Pastas
