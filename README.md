@@ -30,6 +30,31 @@ This is a Node.js API for user login and authentication.
 - .gitignore
 - README.md
 
+## Dependências
+
+The necessary dependencies for this API include:
+
+- express: Web framework for Node.js
+- mongoose: Data modeling library for MongoDB in Node.js
+- dotenv: Load environment variables from a .env file
+- jsonwebtoken: For JWT token generation and verification
+- bcrypt: For password hashing
+- body-parser: Middleware for parsing HTTP request bodies
+
+3. To install these dependencies, run:
+
+   ```bash
+   npm install express mongoose dotenv jsonwebtoken bcrypt body-parser
+
+
+## Initializing the Server
+
+4. To start the server, run:
+
+   ```bash
+   npm start
+
+
 [PT-BR] 
 # API Autenticação Usuários
 
