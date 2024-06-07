@@ -1,5 +1,5 @@
 {
-  "name": "projeto-autenticacao",
+  "name": "user-authentication",
   "version": "1.0.0",
   "description": "",
   "main": "server.js",

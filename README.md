@@ -18,6 +18,7 @@ Esta é uma API em Node.js para login e autenticação de usuários.
 - /src
    - /api
      - /controllers
+     - /middlewares
      - /routes
   - /database
   - /services

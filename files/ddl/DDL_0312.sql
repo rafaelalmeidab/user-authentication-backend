@@ -1,4 +1,4 @@
--- db.usuarios definition
+-- dbname.usuarios definition
 
 CREATE TABLE `usuarios` (
   `ID` int(11) NOT NULL AUTO_INCREMENT,
