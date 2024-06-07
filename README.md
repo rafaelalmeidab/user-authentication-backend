@@ -65,7 +65,7 @@ Esta é uma API em Node.js para login e autenticação de usuários.
 
 ## Dependências
 
-3. As dependências necessárias para esta API incluem:
+As dependências necessárias para esta API incluem:
 
 - express: Framework web para Node.js
 - mongoose: Biblioteca de modelagem de dados do MongoDB para Node.js
@@ -74,7 +74,7 @@ Esta é uma API em Node.js para login e autenticação de usuários.
 - bcrypt: Para hash de senhas
 - body-parser: Middleware para parsing de corpo de requisições HTTP
 
-Para instalar essas dependências, execute:
+3. Para instalar essas dependências, execute:
 
    ```bash
    npm install express mongoose dotenv jsonwebtoken bcrypt body-parser
@@ -86,4 +86,3 @@ Para instalar essas dependências, execute:
 
    ```bash
    npm start
-
