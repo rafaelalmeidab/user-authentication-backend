@@ -11,7 +11,7 @@ This is a Node.js API for user login and authentication.
    git clone https://github.com/rafaelalmeidab/user-authentication
 
 
-## Estrutura de Pastas
+## Folder Structure
 
 2. Folder structure still being set up:
 - /files
@@ -30,7 +30,7 @@ This is a Node.js API for user login and authentication.
 - .gitignore
 - README.md
 
-## Dependências
+## Dependencies
 
 The necessary dependencies for this API include:
 
